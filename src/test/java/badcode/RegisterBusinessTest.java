@@ -107,4 +107,25 @@ class RegisterBusinessTest {
             }
         }
     }
+
+    @Test
+    @DisplayName("มี SpeakerRepository ให้แล้ว ต้อง Pass")
+    public void case06()
+    {
+        RegisterBusiness resgisterBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Satya");
+        speaker.setLastName("Amatdiratha");
+        speaker.setEmail("foo@gmail.com");
+
+        SpeakerRepository repo = new SpeakerRepository(){
+            @Override
+            public Integer saveSpeaker(Speaker speaker) {
+                return 100;
+            }
+
+        };
+
+        resgisterBusiness.register(repo,speaker);
+    }
 }
